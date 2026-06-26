@@ -1,5 +1,6 @@
 package com.example.weatherapp.ui
 
+
 import android.app.Activity
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -26,7 +27,10 @@ import com.example.weatherapp.ui.theme.WeatherAppTheme
 
 
 @Composable
-fun HomePage(modifier: Modifier = Modifier) {
+fun HomePage(
+    modifier: Modifier = Modifier,
+    viewModel: MainViewModel
+) {
     Column(
         modifier = modifier.fillMaxSize()
             .background(Color.Blue)
@@ -47,6 +51,8 @@ fun HomePage(modifier: Modifier = Modifier) {
 @Composable
 fun HomePagePreview() {
     WeatherAppTheme {
-        HomePage()
+        HomePage(
+            viewModel = MainViewModel()
+        )
     }
 }
