@@ -32,7 +32,12 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.ui.Alignment
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.size
+
 import android.content.Intent
+
+import com.google.firebase.Firebase
+import com.google.firebase.auth.auth
+
 
 
 class LoginActivity : ComponentActivity() {
@@ -99,15 +104,29 @@ fun LoginPage(modifier: Modifier = Modifier) {
 //        Row(modifier = modifier.padding(12.dp).fillMaxSize()) {
             Button(
                 enabled = email.isNotEmpty() && password.isNotEmpty(),
+
                 onClick = {
-                Toast.makeText(context, "Login OK!", Toast.LENGTH_LONG).show()
-                //Toast.makeText(activity, "Login OK!", Toast.LENGTH_LONG).show()
-                    activity?.startActivity(
-                        Intent(activity, MainActivity::class.java).setFlags(
-                            Intent.FLAG_ACTIVITY_SINGLE_TOP
-                        )
-                    )
+                    Firebase.auth.signInWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(activity) { task ->
+                            if (task.isSuccessful) {
+                                Toast.makeText(
+                                    activity,
+                                    "Login OK!",
+                                    Toast.LENGTH_LONG
+                                ).show()
+
+                                // A navegação para MainActivity será feita pelo WeatherApp.
+                            } else {
+                                Toast.makeText(
+                                    activity,
+                                    "Login FALHOU!",
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            }
+                        }
                 }
+
+
             ) {
                 Text("Login")
             }
