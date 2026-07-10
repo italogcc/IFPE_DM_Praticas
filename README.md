@@ -1,2 +1,2 @@
-# Pratica02
-IFPE-DM-Pratica02
+# Praticas
+IFPE-DM-Praticas

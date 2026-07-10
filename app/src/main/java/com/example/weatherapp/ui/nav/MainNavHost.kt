@@ -14,7 +14,9 @@ import com.example.weatherapp.ui.MapPage
 fun MainNavHost(
     navController: NavHostController,
     viewModel: MainViewModel,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    hasLocationPermission: Boolean,
+    onRequestLocationPermission: () -> Unit
 ) {
 
     NavHost(
@@ -38,7 +40,9 @@ fun MainNavHost(
         composable<Route.Map> {
             MapPage(
                 modifier = modifier,
-                viewModel = viewModel
+                viewModel = viewModel,
+                hasLocationPermission = hasLocationPermission,
+                onRequestLocationPermission = onRequestLocationPermission
             )
         }
     }
