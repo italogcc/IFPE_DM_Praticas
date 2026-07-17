@@ -37,6 +37,7 @@ import com.example.weatherapp.ui.nav.MainNavHost
 import com.example.weatherapp.ui.theme.WeatherAppTheme
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.NavDestination.Companion.hasRoute
+import com.example.weatherapp.api.WeatherService
 import com.example.weatherapp.db.fb.FBDatabase
 import com.example.weatherapp.ui.MainViewModelFactory
 import com.example.weatherapp.ui.nav.Route
@@ -95,10 +96,11 @@ class MainActivity : ComponentActivity() {
 
             val fbDB = remember { FBDatabase() }
 
-            val viewModel : MainViewModel = viewModel(
-                factory = MainViewModelFactory(fbDB)
-            )
+            val weatherService = remember { WeatherService() }
 
+            val viewModel : MainViewModel = viewModel(
+                factory = MainViewModelFactory(fbDB, weatherService)
+            )
 
             WeatherAppTheme {
                 if (showDialog) {
@@ -108,7 +110,9 @@ class MainActivity : ComponentActivity() {
                         },
                         onConfirm = { city ->
                             if (city.isNotBlank()) {
-                                viewModel.add(city)
+                                // viewModel.add(city)
+                                viewModel.addCity(city)
+
                             }
 
                             showDialog = false

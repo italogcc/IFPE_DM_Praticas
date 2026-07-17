@@ -19,7 +19,7 @@ import com.google.maps.android.compose.MarkerState
 import com.google.maps.android.compose.rememberCameraPositionState
 import androidx.compose.runtime.remember
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
-
+import com.example.weatherapp.api.WeatherService
 
 
 @SuppressLint("MissingPermission")
@@ -67,7 +67,9 @@ fun MapPage(
         GoogleMap(
             modifier = modifier.fillMaxSize(),
             onMapClick = {
-                viewModel.add("Cidade@${it.latitude}:${it.longitude}", location = it)
+                // viewModel.add("Cidade@${it.latitude}:${it.longitude}", location = it)
+                viewModel.addCity(location = it)
+
             },
             cameraPositionState = camPosState,
             properties = MapProperties(isMyLocationEnabled = hasLocationPermission),
