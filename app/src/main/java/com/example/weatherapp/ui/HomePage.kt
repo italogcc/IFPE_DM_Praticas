@@ -1,6 +1,5 @@
 package com.example.weatherapp.ui
 
-
 import android.app.Activity
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -25,7 +24,6 @@ import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.weatherapp.ui.theme.WeatherAppTheme
 
-
 @Composable
 fun HomePage(
     modifier: Modifier = Modifier,
@@ -47,12 +45,13 @@ fun HomePage(
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun HomePagePreview() {
-    WeatherAppTheme {
-        HomePage(
-            viewModel = MainViewModel()
-        )
-    }
-}
+// Comantado por conta do uso do Firebase
+//@Preview(showBackground = true)
+//@Composable
+//fun HomePagePreview() {
+//    WeatherAppTheme {
+//        HomePage(
+//            viewModel = MainViewModel()
+//        )
+//    }
+//}
